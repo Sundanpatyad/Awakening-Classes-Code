@@ -33,7 +33,8 @@ const Footer = () => {
           {/* Section 1 */}
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
             <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
-              <img src={StudyNotionLogo} alt="" className="object-contain" />
+              {/* <img src={StudyNotionLogo} alt="" className="object-contain" /> */}
+              <h1 className="text-richblack-50 font-semibold text-[16px]" >Awakening Classes</h1>
               <h1 className="text-richblack-50 font-semibold text-[16px]">Company</h1>
               <div className="flex flex-col gap-2">
                 {["About", "Careers", "Affiliates"].map((ele, i) => {
@@ -178,10 +179,9 @@ const Footer = () => {
 
               <Link to='https://github.com/Aniruddha-Gade' target="__blank" className="text-white hover:underline mr-1"
               >
-                Aniruddha Gade
-              </Link>
+              Sundan Sharma               </Link>
             </div>
-            <span> © 2023 Studynotion</span>
+            <span> © 2023 Awakening Classes</span>
           </div>
 
           <div className="flex items-center">

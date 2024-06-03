@@ -74,6 +74,7 @@ const Home = () => {
         const fetchCatalogPageData = async () => {
 
             const result = await getCatalogPageData(categoryID, dispatch);
+            
             setCatalogPageData(result);
             // console.log("page data ==== ",CatalogPageData);
         }
@@ -122,8 +123,8 @@ const Home = () => {
                         viewport={{ once: false, amount: 0.1 }}
                         className='text-center text-3xl lg:text-4xl font-semibold mt-7  '
                     >
-                        Empower Your Future with
-                        <HighlightText text={"Coding Skills"} />
+                        Crack Your Next Job with 
+                        <HighlightText text={"Awakening Classes"} />
                     </motion.div>
 
                     <motion.div
@@ -133,7 +134,7 @@ const Home = () => {
                         viewport={{ once: false, amount: 0.1 }}
                         className=' mt-4 w-[90%] text-center text-base lg:text-lg font-bold text-richblack-300'
                     >
-                        With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors.
+                        With our online courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, quizzes, and personalized feedback from instructors.
                     </motion.div>
 
 
@@ -157,12 +158,12 @@ const Home = () => {
                             heading={
                                 <div className='text-3xl lg:text-4xl font-semibold'>
                                     Unlock Your
-                                    <HighlightText text={"coding potential "} />
+                                    <HighlightText text={"Potential "} />
                                     with our online courses
                                 </div>
                             }
                             subheading={
-                                "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+                                "Our courses are designed and taught by experts who have years of experience and are passionate about sharing their knowledge with you."
                             }
                             ctabtn1={
                                 {
@@ -193,11 +194,11 @@ const Home = () => {
                             heading={
                                 <div className="w-[100%] text-3xl lg:text-4xl font-semibold lg:w-[50%]">
                                     Start
-                                    <HighlightText text={"coding in seconds"} />
+                                    <HighlightText text={"Learning in seconds"} />
                                 </div>
                             }
                             subheading={
-                                "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
+                                "Go ahead, give it a try. Our hands-on learning environment means you'll learning from your very first lesson."
                             }
                             ctabtn1={{
                                 btnText: "Continue Lesson",
@@ -230,7 +231,7 @@ const Home = () => {
                     </div>
 
 
-                    <ExploreMore />
+                    {/* <ExploreMore /> */}
                 </div>
 
                 {/*Section 2  */}
@@ -263,7 +264,7 @@ const Home = () => {
 
                             <div className='flex flex-col gap-10 w-full lg:w-[40%] items-start'>
                                 <div className='text-[16px]'>
-                                    The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+                                    The modern Awakening Classes is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
                                 </div>
                                 <CTAButton active={true} linkto={"/signup"}>
                                     <div>

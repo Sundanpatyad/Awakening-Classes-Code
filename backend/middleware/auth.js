@@ -8,10 +8,10 @@ require('dotenv').config();
 // user Authentication by checking token validating
 exports.auth = (req, res, next) => {
     try {
-        // extract token by anyone from this 3 ways
+        // Extract token from body, cookies, or headers
         const token = req.body?.token || req.cookies?.token || req.header('Authorization')?.replace('Bearer ', '');
 
-        // if token is missing
+        // If token is missing
         if (!token) {
             return res.status(401).json({
                 success: false,
@@ -19,47 +19,33 @@ exports.auth = (req, res, next) => {
             });
         }
 
-        // console.log('Token ==> ', token);
-        // console.log('From body -> ', req.body?.token);
-        // console.log('from cookies -> ', req.cookies?.token);
-        // console.log('from headers -> ', req.header('Authorization')?.replace('Bearer ', ''));
+        // Verify token
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err) {
+                console.log('Error while decoding token:', err.message);
+                return res.status(401).json({
+                    success: false,
+                    message: 'Error while decoding token',
+                    error: err.message
+                });
+            }
 
-        // verify token
-        try {
-            const decode = jwt.verify(token, process.env.JWT_SECRET);
-            // console.log('verified decode token => ', decode);
-            
-            // *********** example from console ***********
-            // verified decode token =>  {
-            //     email: 'buydavumli@biyac.com',
-            //     id: '650d6ae2914831142c702e4c',
-            //     accountType: 'Student',
-            //     iat: 1699452446,
-            //     exp: 1699538846
-            //   }
-            req.user = decode;
-        }
-        catch (error) {
-            console.log('Error while decoding token');
-            console.log(error);
-            return res.status(401).json({
-                success: false,
-                error: error.message,
-                messgae: 'Error while decoding token'
-            })
-        }
-        // go to next middleware
-        next();
-    }
-    catch (error) {
-        console.log('Error while token validating');
-        console.log(error);
+            // Attach decoded token to request object
+            req.user = decoded;
+            console.log("This is Decode:", decoded);
+
+            // Proceed to the next middleware
+            next();
+        });
+    } catch (error) {
+        console.log('Error while validating token:', error.message);
         return res.status(500).json({
             success: false,
-            messgae: 'Error while token validating'
-        })
+            message: 'Error while validating token',
+            error: error.message
+        });
     }
-}
+};
 
 
 

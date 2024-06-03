@@ -115,18 +115,18 @@ exports.signup = async (req, res) => {
 
 
         // if otp not found
-        if (!recentOtp || recentOtp.length == 0) {
-            return res.status(400).json({
-                success: false,
-                message: 'Otp not found in DB, please try again'
-            });
-        } else if (otp !== recentOtp.otp) {
-            // otp invalid
-            return res.status(400).json({
-                success: false,
-                message: 'Invalid Otp'
-            })
-        }
+        // if (!recentOtp || recentOtp.length == 0) {
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: 'Otp not found in DB, please try again'
+        //     });
+        // } else if (otp !== recentOtp.otp) {
+        //     // otp invalid
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: 'Invalid Otp'
+        //     })
+        // }
 
         // hash - secure passoword
         let hashedPassword = await bcrypt.hash(password, 10);
