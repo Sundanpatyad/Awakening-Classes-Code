@@ -240,6 +240,9 @@ exports.getFullCourseDetails = async (req, res) => {
                 populate: {
                     path: "subSection",
                 },
+                populate:{
+                    path:"questions"
+                },
             })
             .exec()
 

@@ -9,8 +9,15 @@ const sectionSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'SubSection',
             required:true
-        }
-    ]
+        },
+        ],
+    questions: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'questions',
+                required:true
+            }
+        ]
 
 });
 

@@ -15,6 +15,7 @@ const {
   CREATE_SUBSECTION_API,
   UPDATE_SECTION_API,
   UPDATE_SUBSECTION_API,
+  UPDATE_MOCK_TEST_API,
   DELETE_SECTION_API,
   DELETE_SUBSECTION_API,
   GET_ALL_INSTRUCTOR_COURSES_API,
@@ -76,6 +77,7 @@ export const fetchCourseCategories = async () => {
 
   try {
     const response = await apiConnector("GET", COURSE_CATEGORIES_API)
+    console.log(response);
     console.log("COURSE_CATEGORIES_API RESPONSE............", response)
     if (!response?.data?.success) {
       throw new Error("Could Not Fetch Course Categories")
@@ -228,6 +230,30 @@ export const updateSubSection = async (data, token) => {
 
   try {
     const response = await apiConnector("POST", UPDATE_SUBSECTION_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+    console.log("UPDATE SUB-SECTION API RESPONSE............", response)
+
+    if (!response?.data?.success) {
+      throw new Error("Could Not Update Lecture")
+    }
+
+    result = response?.data?.data
+    toast.success("Lecture Updated")
+  } catch (error) {
+    console.log("UPDATE SUB-SECTION API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
+export const updateMockTest = async (data, token) => {
+  let result = null
+  const toastId = toast.loading("Loading...")
+
+  try {
+    const response = await apiConnector("POST", UPDATE_MOCK_TEST_API, data, {
       Authorization: `Bearer ${token}`,
     })
     console.log("UPDATE SUB-SECTION API RESPONSE............", response)

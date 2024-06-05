@@ -17,7 +17,6 @@ const profileRoutes = require('./routes/profile');
 const paymentRoutes = require('./routes/payments');
 const courseRoutes = require('./routes/course');
 
-
 // middleware 
 app.use(express.json()); // to parse json body
 app.use(cookieParser());

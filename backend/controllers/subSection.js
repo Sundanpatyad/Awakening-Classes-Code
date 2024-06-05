@@ -1,3 +1,4 @@
+const Mocktest = require('../models/questions');
 const Section = require('../models/section');
 const SubSection = require('../models/subSection');
 const { uploadImageToCloudinary } = require('../utils/imageUploader');
@@ -54,6 +55,44 @@ exports.createSubSection = async (req, res) => {
         })
     }
 }
+
+
+exports.createMockTest = async (req, res) => {
+    try {
+      // Create new question document
+      const newQuestion = new Mocktest(req.body);
+  
+      // Save question to Questions collection
+      const savedQuestion = await newQuestion.save();
+  
+      // Update section (optional)
+      if (req.body.sectionId) {
+        const updatedSection = await Section.findByIdAndUpdate(
+          { _id: req.body.sectionId },
+          { $push: { questions: savedQuestion._id } },
+          { new: true }
+        );
+      }
+  
+      // Return success response
+      res.status(200).json({
+        success: true,
+        data: savedQuestion,
+        message: 'Question created successfully'
+      });
+    } catch (error) {
+      console.log('Error while creating Question');
+      console.log(error);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+        message: 'Error while creating Question'
+      });
+    }
+  };
+  
+
+
 
 
 

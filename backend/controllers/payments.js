@@ -19,9 +19,10 @@ exports.capturePayment = async (req, res) => {
     // extract courseId & userId
     const { coursesId } = req.body;
     // console.log('coursesId = ', typeof (coursesId))
-    // console.log('coursesId = ', coursesId)
+    console.log('coursesId = ', coursesId)
 
     const userId = req.user.id;
+    console.log('userId = ', userId)
 
 
     if (coursesId.length === 0) {

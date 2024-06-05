@@ -31,6 +31,7 @@ function Catalog() {
                     (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName
                 )[0]._id
                 setCategoryId(category_id)
+                console.log(categoryId)
             } catch (error) {
                 console.log("Could not fetch Categories.", error)
             }
@@ -44,6 +45,7 @@ function Catalog() {
                 setLoading(true)
                 try {
                     const res = await getCatalogPageData(categoryId)
+                    console.log(res);
                     setCatalogPageData(res)
                 } catch (error) {
                     console.log(error)

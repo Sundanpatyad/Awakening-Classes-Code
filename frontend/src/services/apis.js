@@ -34,6 +34,7 @@ export const courseEndpoints = {
   CREATE_SUBSECTION_API: "http://localhost:8000/api/v1/course/addSubSection",
   UPDATE_SECTION_API: "http://localhost:8000/api/v1/course/updateSection",
   UPDATE_SUBSECTION_API: "http://localhost:8000/api/v1/course/updateSubSection",
+  UPDATE_MOCK_TEST_API: "http://localhost:8000/api/v1/course/createMockTest",
   GET_ALL_INSTRUCTOR_COURSES_API: "http://localhost:8000/api/v1/course/getInstructorCourses",
   DELETE_SECTION_API: "http://localhost:8000/api/v1/course/deleteSection",
   DELETE_SUBSECTION_API: "http://localhost:8000/api/v1/course/deleteSubSection",

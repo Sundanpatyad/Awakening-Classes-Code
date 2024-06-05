@@ -6,6 +6,7 @@ exports.createSection = async (req, res) => {
     try {
         // extract data 
         const { sectionName, courseId } = req.body;
+        console.log(sectionName);
         // console.log('sectionName, courseId = ', sectionName, ",  = ", courseId)
 
         // validation

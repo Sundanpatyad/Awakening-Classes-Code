@@ -11,6 +11,7 @@ import { setCourse } from "../../../../../slices/courseSlice"
 
 import ConfirmationModal from "../../../../common/ConfirmationModal"
 import SubSectionModal from "./SubSectionModal"
+import MockTestModal from "./Mock Test Modal"
 
 
 
@@ -20,10 +21,12 @@ export default function NestedView({ handleChangeEditSectionName }) {
   const { course } = useSelector((state) => state.course)
   const { token } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+  console.log(course);
 
   // States to keep track of mode of modal [add, view, edit]
   const [addSubSection, setAddSubsection] = useState(null)
   const [viewSubSection, setViewSubSection] = useState(null)
+  const [addMockTest, setAddMockTest] = useState(null)
   const [editSubSection, setEditSubSection] = useState(null)
   // to keep track of confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(null)
@@ -105,7 +108,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
             </summary>
             <div className="px-6 pb-4">
               {/* Render All Sub Sections Within a Section */}
-              {section.subSection.map((data) => (
+              {section?.subSection?.map((data) => (
                 <div
                   key={data?._id}
                   onClick={() => setViewSubSection(data)}
@@ -146,13 +149,41 @@ export default function NestedView({ handleChangeEditSectionName }) {
                   </div>
                 </div>
               ))}
-              {/* Add New Lecture to Section */}
+
+{course.courseContent ? (
+  course.courseContent.flatMap((section) =>
+    Array.isArray(section.questions) ? (
+      section.questions.map((question, questionIndex) => (
+        <div key={`${section._id}-${questionIndex}`}>
+          <p className="text-white">
+            Q{questionIndex + 1} {question.question}
+          </p>
+          <p className="text-white">{question.options.option1}</p>
+          <p className="text-white">{question.options.option2}</p>
+          <p className="text-white">{question.options.option3}</p>
+          <p className="text-white">{question.options.option4}</p>
+          <p className="text-white mb-10">
+            Correct Answer :{question.correctOption}
+          </p>
+        </div>
+      ))
+    ) : null
+  )
+) : null}
+
               <button
                 onClick={() => setAddSubsection(section._id)}
                 className="mt-3 flex items-center gap-x-1 text-yellow-50"
               >
                 <FaPlus className="text-lg" />
                 <p>Add Lecture</p>
+              </button>
+              <button
+                onClick={() => setAddMockTest(section._id)}
+                className="mt-3 flex items-center gap-x-1 text-yellow-50"
+              >
+                <FaPlus className="text-lg" />
+                <p>Add Mock Test</p>
               </button>
             </div>
           </details>
@@ -189,6 +220,37 @@ export default function NestedView({ handleChangeEditSectionName }) {
       ) : (
         <></>
       )}
+
+      {addMockTest ? (
+        <MockTestModal
+          modalData={addMockTest}
+          setModalData={setAddMockTest}
+          add={true}
+        />
+      ) : viewSubSection ? (
+        <MockTestModal
+          modalData={viewSubSection}
+          setModalData={setViewSubSection}
+          view={true}
+        />
+      ) : editSubSection ? (
+        <MockTestModal
+          modalData={editSubSection}
+          setModalData={setEditSubSection}
+          edit={true}
+        />
+      ) : (
+        <></>
+      )}
+      {/* Confirmation Modal */}
+      {confirmationModal ? (
+        <ConfirmationModal modalData={confirmationModal} />
+      ) : (
+        <></>
+      )}
+
+
+
     </>
   )
 }
