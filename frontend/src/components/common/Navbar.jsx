@@ -88,9 +88,9 @@ const Navbar = () => {
              {/* <nav className={` fixed flex items-center justify-center w-full h-16 z-[10] translate-y-0 transition-all text-white ${showNavbar}`}> */}
             <div className='flex w-11/12 max-w-maxContent items-center justify-between '>
                 {/* logo */}
-                <Link to="/">
-                    {/* <img src={""} width={160} height={42} loading='lazy' /> */}
-                    <h1 loading='lazy' className='font-bold text-gray-100 text-xl'>Awakening Classes</h1>
+                <Link to="/" className='flex justify-center align-center gap-2'>
+                    <img src="https://cdn.vectorstock.com/i/500p/37/87/back-to-school-graduation-emoji-smiling-face-vector-43053787.jpg" width={30} height={40}  className='inline rounded-full' loading='lazy' />
+                    <h1 loading='lazy' className='font-bold text-gray-100 inline text-xl'> Awakening Classes</h1>
                 </Link>
 
                 {/* Nav Links - visible for only large devices*/}
@@ -102,7 +102,7 @@ const Navbar = () => {
                                     link.title === "Courses" ? (
                                         <div
                                             className={`group relative flex cursor-pointer items-center gap-1 ${matchRoute("/catalog/:catalogName")
-                                                ? "bg-yellow-25 text-black rounded-xl p-1 px-3"
+                                                ? "bg-blue-100 text-black rounded-xl p-1 px-3"
                                                 : "text-richblack-25 rounded-xl p-1 px-3"
                                                 }`}
                                         >
@@ -137,7 +137,7 @@ const Navbar = () => {
                                         </div>
                                     ) : (
                                         <Link to={link?.path}>
-                                            <p className={`${matchRoute(link?.path) ? "bg-yellow-25 text-black" : "text-richblack-25"} rounded-xl p-1 px-3 `}>
+                                            <p className={`${matchRoute(link?.path) ? "bg-blue-100 text-black" : "text-richblack-25"} rounded-xl p-1 px-3 `}>
                                                 {link.title}
                                             </p>
                                         </Link>)
@@ -156,7 +156,7 @@ const Navbar = () => {
                             <Link to="/dashboard/cart" className="relative">
                                 <AiOutlineShoppingCart className="text-[2.35rem] text-richblack-5 hover:bg-richblack-700 rounded-full p-2 duration-200" />
                                 {totalItems > 0 && (
-                                    <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
+                                    <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-blue-100">
                                         {totalItems}
                                     </span>
                                 )}
@@ -167,8 +167,8 @@ const Navbar = () => {
                         token === null && (
                             <Link to="/login">
                                 {/* <button className='border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md focus:outline-8 outline-yellow-50'> */}
-                                <button className={` px-[12px] py-[8px] text-richblack-100 rounded-md 
-                                 ${matchRoute('/login') ? 'border-[2.5px] border-yellow-50' : 'border border-richblack-700 bg-richblack-800'} `}
+                                <button className={` px-[5px] py-[0px] text-richblack-100 rounded-md 
+                                `}
                                 >
                                     Log in
                                 </button>
@@ -180,7 +180,7 @@ const Navbar = () => {
                             <Link to="/signup">
                                 {/* <button className='border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md'> */}
                                 <button className={` px-[12px] py-[8px] text-richblack-100 rounded-md 
-                                 ${matchRoute('/signup') ? 'border-[2.5px] border-yellow-50' : 'border border-richblack-700 bg-richblack-800'} `}
+                                  `}
                                 >
                                     Sign Up
                                 </button>

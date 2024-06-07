@@ -89,27 +89,28 @@ const Home = () => {
 
     return (
         <React.Fragment>
-            {/* background random image */}
-            <div>
-                <div className="w-full h-[450px] md:h-[650px] absolute top-0 left-0 opacity-[0.3] overflow-hidden object-cover ">
-                    <img src={backgroundImg} alt="Background"
-                        className="w-full h-full object-cover "
-                    />
+        //     {/* background random image */}
+        //     <div>
+        //         {/* <div className="w-full h-[450px] md:h-[650px] absolute top-0 left-0 opacity-[0.3] overflow-hidden object-cover ">
+        //             <img src={backgroundImg} alt="Background"
+        //                 className="w-full h-full object-cover "
+        //             />
 
-                    <div className="absolute left-0 bottom-0 w-full h-[250px] opacity_layer_bg "></div>
-                </div>
-            </div>
+        //             <div className="absolute left-0 bottom-0 w-full h-[250px] opacity_layer_bg "></div>
+        //         </div> */}
+        //     </div>
 
             <div className=' '>
                 {/*Section1  */}
-                <div className='relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white '>
+                <div className='h-100vh'>
+                <div className='relative h-100vh md:h-100vh justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white '>
 
-                    <Link to={"/signup"}>
-                        <div className='z-0 group p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200
+                    <Link to={"/catalog/web-dev"}>
+                        <div className='z-0 group p-1 mx-auto rounded-full bg-richblack-900 mt-20 font-bold text-richblack-200
                                         transition-all duration-200 hover:scale-95 w-fit'>
-                            <div className='flex flex-row items-center gap-2 rounded-full px-10 py-[5px]
+                            <div className='flex flex-row items-center gap-2 rounded-full px-10 mt- py-[5px]
                               transition-all duration-200 group-hover:bg-richblack-900'>
-                                <p>Become an Instructor</p>
+                                <p>Mock Tests</p>
                                 <FaArrowRight />
                             </div>
                         </div>
@@ -117,37 +118,40 @@ const Home = () => {
                     </Link>
 
                     <motion.div
+                    id='heading-hero'
                         variants={fadeIn('left', 0.1)}
                         initial='hidden'
                         whileInView={'show'}
                         viewport={{ once: false, amount: 0.1 }}
-                        className='text-center text-3xl lg:text-4xl font-semibold mt-7  '
+                        className='text-center text-gray-200 text-5xl w-80 lg:w-full lg:text-7xl font-light mt-7  '
                     >
-                        Crack Your Next Job with 
+                        We Only Teach <br /> What we are <i>really</i> really <i>Good </i>At <br /> 
                         <HighlightText text={"Awakening Classes"} />
                     </motion.div>
 
-                    <motion.div
+                    {/* <motion.div
                         variants={fadeIn('right', 0.1)}
                         initial='hidden'
                         whileInView={'show'}
                         viewport={{ once: false, amount: 0.1 }}
-                        className=' mt-4 w-[90%] text-center text-base lg:text-lg font-bold text-richblack-300'
+                        className=' mt-2 w-[90%] text-center text-base lg:text-lg font-bold text-richblack-300'
                     >
                         With our online courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, quizzes, and personalized feedback from instructors.
-                    </motion.div>
+                    </motion.div> */}
 
 
                     <div className='flex flex-row gap-7 mt-8'>
-                        <CTAButton active={true} linkto={"/signup"}>
-                            Learn More
-                        </CTAButton>
+                        {/* <CTAButton active={true} linkto={"/signup"}>
+                           Explore The Knowledge 
+                        </CTAButton> */}
 
                         <CTAButton active={false} linkto={"/login"}>
-                            Book a Demo
+                        Explore The Knowledge
                         </CTAButton>
                     </div>
                 </div>
+                </div>
+                
 
                 {/* animated code */}
                 <div className='relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white justify-between'>
@@ -156,10 +160,10 @@ const Home = () => {
                         <CodeBlocks
                             position={"lg:flex-row"}
                             heading={
-                                <div className='text-3xl lg:text-4xl font-semibold'>
-                                    Unlock Your
-                                    <HighlightText text={"Potential "} />
-                                    with our online courses
+                                <div className='text-5xl lg:text-3xl font-semibold'>
+                                    Courses That Make
+                                    <HighlightText text={"Impact "} />
+                                  
                                 </div>
                             }
                             subheading={
@@ -192,9 +196,9 @@ const Home = () => {
                         <CodeBlocks
                             position={"lg:flex-row-reverse"}
                             heading={
-                                <div className="w-[100%] text-3xl lg:text-4xl font-semibold lg:w-[50%]">
-                                    Start
-                                    <HighlightText text={"Learning in seconds"} />
+                                <div className="w-[100%] text-3xl lg:text-8xl font-semibold lg:w-[100%]">
+                                    Learning
+                                    <HighlightText text={"in seconds"} />
                                 </div>
                             }
                             subheading={
@@ -217,7 +221,7 @@ const Home = () => {
                     </div>
 
                     {/* course slider */}
-                    <div className='mx-auto box-content w-full max-w-maxContentTab px- py-12 lg:max-w-maxContent'>
+                    {/* <div className='mx-auto box-content w-full max-w-maxContentTab px- py-12 lg:max-w-maxContent'>
                         <h2 className='text-white mb-6 text-2xl '>
                             Popular Picks for You 🏆
                         </h2>
@@ -228,14 +232,14 @@ const Home = () => {
                             Top Enrollments Today 🔥
                         </h2>
                         <Course_Slider Courses={CatalogPageData?.mostSellingCourses} />
-                    </div>
+                    </div> */}
 
 
                     {/* <ExploreMore /> */}
                 </div>
 
                 {/*Section 2  */}
-                <div className='bg-pure-greys-5 text-richblack-700 '>
+                {/* <div className='bg-pure-greys-5 text-richblack-700 '>
                     <div className='homepage_bg h-[310px]'>
                         <div className='w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-5 mx-auto'>
                             <div className='h-[150px]'></div>
@@ -275,18 +279,18 @@ const Home = () => {
                         </div>
 
 
-                        {/* leadership */}
+                    
                         <TimelineSection />
 
                         <LearningLanguageSection />
 
                     </div>
 
-                </div>
+                </div> */}
 
 
                 {/*Section 3 */}
-                <div className='mt-14 w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 first-letter bg-richblack-900 text-white'>
+                <div className='mt-14 w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 first-letter bg-black text-white'>
                     <InstructorSection />
 
                     {/* Reviws from Other Learner */}

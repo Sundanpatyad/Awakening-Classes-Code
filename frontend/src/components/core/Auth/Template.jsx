@@ -25,7 +25,7 @@ function Template({ title, description1, description2, image, formType }) {
         </div>
 
 
-        <div className="relative max-w-[550px] md:mx-0 my-0">
+        <div className="relative max-w-[550px] hidden lg:block">
           <Img
             src={image}
             alt={formType}
