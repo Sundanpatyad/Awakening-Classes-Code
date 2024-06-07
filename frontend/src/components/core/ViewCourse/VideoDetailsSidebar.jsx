@@ -10,6 +10,7 @@ import { IoIosArrowBack } from "react-icons/io"
 
 import { IoMdClose } from 'react-icons/io'
 import { HiMenuAlt1 } from 'react-icons/hi'
+import VideoDetails from "./VideoDetails";
 
 
 
@@ -20,6 +21,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
   const navigate = useNavigate()
   const location = useLocation()
   const dispatch = useDispatch();
+  const[selectedMockTest, setSelectedMockTest]=useState();
 
   const { sectionId, subSectionId } = useParams()
   const {
@@ -46,7 +48,10 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
   }, [courseSectionData, courseEntireData, location.pathname])
 
 
-
+  const handleMockTestClick = (mockTest) => {
+    setSelectedMockTest(mockTest);
+    console.log("Mocktest " , mockTest);
+  };
 
   return (
     <>
@@ -91,7 +96,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
         {/* render all section -subSection */}
         <div className="h-[calc(100vh - 5rem)] overflow-y-auto">
-          {courseSectionData.map((section, index) => (
+          {courseSectionData?.map((section, index) => (
             <div
               className="mt-2 cursor-pointer text-sm text-richblack-5"
               onClick={() => setActiveStatus(section?._id)}
@@ -145,8 +150,28 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
               )}
             </div>
           ))}
+          <div className="mt-2 cursor-pointer text-sm text-richblack-5">
+            <div className="bg-richblack-700 px-5 py-4">
+              <div className="font-semibold">Mock Tests</div>
+            </div>
+            <div className="overflow-y-auto">
+              {courseEntireData?.mocktests?.map((mockTest, index) => (
+                <div
+                  className="px-5 py-2 hover:bg-richblack-900"
+                  key={index}
+                  onClick={() => {
+                   handleMockTestClick(mockTest)
+                    navigate(`/view-course/${courseEntireData?._id}/section/${section?._id}/sub-section/${topic?._id}`)
+                  }}
+                >
+                  {mockTest.mockTestName}
+                </div>
+              ))}
+            </div>
+            </div>
         </div>
       </div>
+      <VideoDetails selectedMockTest={selectedMockTest} />
     </>
   )
 }

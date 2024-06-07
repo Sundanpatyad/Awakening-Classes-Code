@@ -21,6 +21,12 @@ const courseSchema = new mongoose.Schema({
             ref: 'Section'
         }
     ],
+    mocktests:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'MockTest'
+        }
+    ],
     ratingAndReviews: [
         {
             type: mongoose.Schema.Types.ObjectId,

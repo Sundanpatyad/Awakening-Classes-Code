@@ -51,7 +51,8 @@ const {
 
 
 // Middlewares
-const { auth, isAdmin, isInstructor, isStudent } = require('../middleware/auth')
+const { auth, isAdmin, isInstructor, isStudent } = require('../middleware/auth');
+const { createMockTests } = require('../controllers/mockTest');
 
 
 // ********************************************************************************************************
@@ -61,6 +62,7 @@ const { auth, isAdmin, isInstructor, isStudent } = require('../middleware/auth')
 
 router.post('/createCourse', auth, isInstructor, createCourse);
 router.post('/createMockTest', auth, isInstructor, createMockTest);
+router.post('/createMockTests', auth, isInstructor, createMockTests);
 
 //Add a Section to a Course
 router.post('/addSection', auth, isInstructor, createSection);

@@ -161,7 +161,7 @@ const Home = () => {
                             position={"lg:flex-row"}
                             heading={
                                 <div className='text-5xl lg:text-3xl font-semibold'>
-                                    Courses That Make
+                                    Courses That Make an
                                     <HighlightText text={"Impact "} />
                                   
                                 </div>
@@ -196,7 +196,7 @@ const Home = () => {
                         <CodeBlocks
                             position={"lg:flex-row-reverse"}
                             heading={
-                                <div className="w-[100%] text-3xl lg:text-8xl font-semibold lg:w-[100%]">
+                                <div className="w-[100%] text-3xl lg:text-3xl font-semibold lg:w-[100%]">
                                     Learning
                                     <HighlightText text={"in seconds"} />
                                 </div>

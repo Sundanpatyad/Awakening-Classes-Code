@@ -14,6 +14,8 @@ const {
   CREATE_SECTION_API,
   CREATE_SUBSECTION_API,
   UPDATE_SECTION_API,
+  CREATE_MOCK_TESTS_API,
+  UPDATE_MOCK_TESTS_API,
   UPDATE_SUBSECTION_API,
   UPDATE_MOCK_TEST_API,
   DELETE_SECTION_API,
@@ -170,6 +172,32 @@ export const createSection = async (data, token) => {
   return result
 }
 
+// ================ create MockTest ================
+export const createMock = async (data, token) => {
+  let result = null
+  const toastId = toast.loading("Loading...")
+  console.log("Api Call Data", data);
+  try {
+    const response = await apiConnector("POST", CREATE_MOCK_TESTS_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+    console.log("CREATE MOCK API RESPONSE............", response)
+
+    if (!response?.data?.success) {
+      throw new Error("Could Not Create Section")
+    }
+
+    result = response?.data?.updatedCourseDetails
+    toast.success("Course Mock Created")
+  } catch (error) {
+    console.log("CREATE MOCK API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
+
 
 // ================ create SubSection ================
 export const createSubSection = async (data, token) => {
@@ -204,6 +232,32 @@ export const updateSection = async (data, token) => {
 
   try {
     const response = await apiConnector("POST", UPDATE_SECTION_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+    console.log("UPDATE SECTION API RESPONSE............", response)
+
+    if (!response?.data?.success) {
+      throw new Error("Could Not Update Section")
+    }
+
+    result = response?.data?.data
+    toast.success("Course Section Updated")
+  } catch (error) {
+    console.log("UPDATE SECTION API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
+
+// ================ Update Mock ================
+export const updateMock = async (data, token) => {
+  let result = null
+  const toastId = toast.loading("Loading...")
+
+  try {
+    const response = await apiConnector("POST", UPDATE_MOCK_TESTS_API, data, {
       Authorization: `Bearer ${token}`,
     })
     console.log("UPDATE SECTION API RESPONSE............", response)

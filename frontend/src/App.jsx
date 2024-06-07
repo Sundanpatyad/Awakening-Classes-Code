@@ -38,6 +38,7 @@ import VideoDetails from './components/core/ViewCourse/VideoDetails';
 import { ACCOUNT_TYPE } from './utils/constants';
 
 import { HiArrowNarrowUp } from "react-icons/hi"
+import Mocktest from "./pages/Mocktest";
 
 
 function App() {
@@ -179,12 +180,25 @@ function App() {
           }
         >
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+          <>
             <Route
-              path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
-              element={<VideoDetails />}
-            />
+            path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+            element={<VideoDetails />}
+          /> 
+           <Route
+          path="view-course/:courseId/Mock/:mockId/"
+          element={<Mocktest />}
+        />
+          </>
+            
           )}
         </Route>
+        <Route
+              path="/mockTest"
+              element={<Mocktest/>}
+            />
+        
+        
 
 
 

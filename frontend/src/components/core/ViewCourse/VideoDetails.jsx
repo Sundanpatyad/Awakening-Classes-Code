@@ -22,7 +22,6 @@ const VideoDetails = () => {
   const location = useLocation()
   const playerRef = useRef(null)
   const dispatch = useDispatch()
-
   const { token } = useSelector((state) => state.auth)
   const { courseSectionData, courseEntireData, completedLectures } = useSelector((state) => state.viewCourse)
 
@@ -30,6 +29,7 @@ const VideoDetails = () => {
   const [previewSource, setPreviewSource] = useState("")
   const [videoEnded, setVideoEnded] = useState(false)
   const [loading, setLoading] = useState(false)
+  console.log(courseEntireData);
 
   useEffect(() => {
     ; (async () => {
@@ -165,11 +165,25 @@ const VideoDetails = () => {
 
 
       {!videoData ? (
-        <img
-          src={previewSource}
-          alt="Preview"
-          className="h-full w-full rounded-md object-cover"
-        />
+        <>
+          {courseEntireData.mocktests.map((mocktest, mocktestIndex) => (
+            <div key={mocktestIndex} className="bg-gray-100 p-6 rounded-lg shadow-md mb-8">
+              <h2 className="text-2xl font-bold mb-4">Mock Test {mocktestIndex + 1}</h2>
+              {mocktest.questions.map((question, questionIndex) => (
+                <div key={questionIndex} className="bg-black p-6 rounded-lg shadow-md mb-4">
+                  <h3 className="text-xl font-bold mb-2">Question {questionIndex + 1}</h3>
+                  <p className="mb-4">{question.question}</p>
+                  <ol className="list-decimal list-inside mb-4">
+                    <li className="mb-2">{question.options.option1}</li>
+                    <li className="mb-2">{question.options.option2}</li>
+                    <li className="mb-2">{question.options.option3}</li>
+                    <li className="mb-2">{question.options.option4}</li>
+                  </ol>
+                  <p className="font-bold">Correct Answer: {question.correctAnswer}</p>
+                </div>
+              ))}
+            </div>
+          ))}       </>
       ) : (
         <Player
           ref={playerRef}

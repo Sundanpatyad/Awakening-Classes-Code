@@ -7,7 +7,7 @@ import { RxDropdownMenu } from "react-icons/rx"
 import { useDispatch, useSelector } from "react-redux"
 
 import { deleteSection, deleteSubSection } from "../../../../../services/operations/courseDetailsAPI"
-import { setCourse } from "../../../../../slices/courseSlice"
+import { setCourse  } from "../../../../../slices/courseSlice"
 
 import ConfirmationModal from "../../../../common/ConfirmationModal"
 import SubSectionModal from "./SubSectionModal"
@@ -16,10 +16,13 @@ import MockTestModal from "./Mock Test Modal"
 
 
 
-export default function NestedView({ handleChangeEditSectionName }) {
+export default function NestedViewMockTest({ handleChangeEditMockName }) {
 
   const { course } = useSelector((state) => state.course)
   const { token } = useSelector((state) => state.auth)
+  const { courseEntireData } = useSelector((state) => state.viewCourse)
+  console.log("Course Entire Data",courseEntireData );
+
   const dispatch = useDispatch()
   console.log(course);
 
@@ -60,7 +63,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
         className="rounded-2xl bg-richblack-700 p-6 px-8"
         id="nestedViewContainer"
       >
-        {course?.courseContent?.map((section) => (
+        {course?.mocktests?.map((section) => (
           // Section Dropdown
           <details key={section._id} open>
             {/* Section Dropdown Content */}
@@ -69,7 +72,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
               <div className="flex items-center gap-x-3">
                 <RxDropdownMenu className="text-2xl text-richblack-50" />
                 <p className="font-semibold text-richblack-50">
-                  {section.sectionName}
+                  {section.mockTestName}
                 </p>
               </div>
 
@@ -77,9 +80,9 @@ export default function NestedView({ handleChangeEditSectionName }) {
                 {/* Change Edit SectionName button */}
                 <button
                   onClick={() =>
-                    handleChangeEditSectionName(
+                    handleChangeEditMockName(
                       section._id,
-                      section.sectionName
+                      section.mockTestName
                     )
                   }
                 >
@@ -108,7 +111,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
             </summary>
             <div className="px-6 pb-4">
               {/* Render All Sub Sections Within a Section */}
-              {section?.subSection?.map((data) => (
+              {section?.questions?.map((data) => (
                 <div
                   key={data?._id}
                   onClick={() => setViewSubSection(data)}
@@ -117,7 +120,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
                   <div className="flex items-center gap-x-3 py-2 ">
                     <RxDropdownMenu className="text-2xl text-richblack-50" />
                     <p className="font-semibold text-richblack-50">
-                      {data.title}
+                      {data.question}
                     </p>
                   </div>
                   <div
@@ -134,8 +137,8 @@ export default function NestedView({ handleChangeEditSectionName }) {
                     <button
                       onClick={() =>
                         setConfirmationModal({
-                          text1: "Delete this Sub-Section?",
-                          text2: "This lecture will be deleted",
+                          text1: "Delete this Mock Test?",
+                          text2: "This Mock Test will be deleted",
                           btn1Text: "Delete",
                           btn2Text: "Cancel",
                           btn1Handler: () =>
@@ -150,7 +153,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
                 </div>
               ))}
 
-{course.courseContent ? (
+{/* {course.courseContent ? (
   course.courseContent.flatMap((section) =>
     Array.isArray(section.questions) ? (
       section.questions.map((question, questionIndex) => (
@@ -169,22 +172,22 @@ export default function NestedView({ handleChangeEditSectionName }) {
       ))
     ) : null
   )
-) : null}
+) : null} */}
 
-              <button
+              {/* <button
                 onClick={() => setAddSubsection(section._id)}
                 className="mt-3 flex items-center gap-x-1 text-yellow-50"
               >
                 <FaPlus className="text-lg" />
                 <p>Add Lecture</p>
-              </button>
-              {/* <button
+              </button> */}
+              <button
                 onClick={() => setAddMockTest(section._id)}
                 className="mt-3 flex items-center gap-x-1 text-yellow-50"
               >
                 <FaPlus className="text-lg" />
                 <p>Add Mock Test</p>
-              </button> */}
+              </button>
             </div>
           </details>
         ))}

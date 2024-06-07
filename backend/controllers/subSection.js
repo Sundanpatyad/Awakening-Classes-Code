@@ -1,3 +1,4 @@
+const mocktest = require('../models/mocktest');
 const Mocktest = require('../models/questions');
 const Section = require('../models/section');
 const SubSection = require('../models/subSection');
@@ -66,9 +67,9 @@ exports.createMockTest = async (req, res) => {
       const savedQuestion = await newQuestion.save();
   
       // Update section (optional)
-      if (req.body.sectionId) {
-        const updatedSection = await Section.findByIdAndUpdate(
-          { _id: req.body.sectionId },
+      if (req.body.mockId) {
+        const updatedSection = await mocktest.findByIdAndUpdate(
+          { _id: req.body.mockId },
           { $push: { questions: savedQuestion._id } },
           { new: true }
         );

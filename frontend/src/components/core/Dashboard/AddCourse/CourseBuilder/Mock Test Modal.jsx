@@ -34,10 +34,10 @@ export default function MockTestModal({
   useEffect(() => {
     if (view || edit) {
       setValue("question", modalData.question);
-      setValue("options.option1", modalData.option1);
-      setValue("options.option2", modalData.option2);
-      setValue("options.option3", modalData.option3);
-      setValue("options.option4", modalData.option4);
+      setValue("options.option1", modalData.options.option1);
+      setValue("options.option2", modalData.options.option2);
+      setValue("options.option3", modalData.options.option3);
+      setValue("options.option4", modalData.options.option4);
       setValue("correctOption", modalData.correctOption);
     }
   }, []);
@@ -80,6 +80,7 @@ export default function MockTestModal({
 
   const onSubmit = async (data) => {
     if (view) return;
+    console.log(data);
 
     if (edit) {
       if (!isFormUpdated()) {
@@ -99,14 +100,14 @@ export default function MockTestModal({
         option3: data.options.option3,
         option4: data.options.option4,
       },
-      sectionId: modalData,
+      mockId: modalData,
     };
-
+    console.log("Modal Data" , modalData);
     setLoading(true);
     const result = await updateMockTest(formData, token);
     if (result) {
-      const updatedCourseContent = course.courseContent.map((section) =>
-        section._id === modalData ? result : section
+      const updatedCourseContent = course.courseContent.map((mocktests) =>
+        mocktests._id === modalData ? result : mocktests
       );
       const updatedCourse = { ...course, courseContent: updatedCourseContent };
       dispatch(setCourse(updatedCourse));

@@ -44,6 +44,8 @@ export default function ViewCourse() {
   // handle sidebar for small devices
   const { courseViewSidebar } = useSelector(state => state.sidebar)
   const [screenSize, setScreenSize] = useState(undefined)
+  const[mockTestDisplay , setMockTestDisplay] = useState();
+
 
   // set curr screen Size
   useEffect(() => {
@@ -66,7 +68,7 @@ export default function ViewCourse() {
     <>
       <div className="relative flex min-h-[calc(100vh-3.5rem)] ">
         {/* view course side bar */}
-        {courseViewSidebar && <VideoDetailsSidebar setReviewModal={setReviewModal} />}
+        {courseViewSidebar && <VideoDetailsSidebar setMockTestDisplay={setMockTestDisplay} setReviewModal={setReviewModal} />}
 
         <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto mt-14">
           <div className="mx-6">
