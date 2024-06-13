@@ -5,7 +5,6 @@ import { ImGithub, ImLinkedin2 } from "react-icons/im";
 
 
 // Images
-import StudyNotionLogo from "../../assets/Logo/Logo-Full-Light.png";
 
 // footer data
 const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
@@ -33,7 +32,7 @@ const Footer = () => {
           {/* Section 1 */}
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
             <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
-              {/* <img src={StudyNotionLogo} alt="" className="object-contain" /> */}
+              {/* <img src={Aawakening ClassesLogo} alt="" className="object-contain" /> */}
               <h1 className="text-richblack-50 font-semibold text-[16px]" >Awakening Classes</h1>
               <h1 className="text-richblack-50 font-semibold text-[16px]">Company</h1>
               <div className="flex flex-col gap-2">
